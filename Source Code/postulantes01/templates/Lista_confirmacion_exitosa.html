@@ -1,0 +1,26 @@
+
+{% load static %}
+ <!DOCTYPE html>
+ <html lang="es">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="{% static 'stylesconfirmado.css' %}">
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+ </head>
+ <body>
+     <div class="contenedor">
+         <img class="imagen-normal" src="{% static 'images/fondo2.jpg' %}" alt="fondo">
+         <img class="imagen-celular" src="{% static 'images/fondocelulares.jpg' %}" alt="fondo para celulares">
+     </div>
+     <div class="container">
+         <div class="card">
+             <h2>Confirmación exitosa</h2>
+             <p>Estimado/a {{ postulante.nombre }}</p>
+             <p>¡Gracias por confirmar en nuestro colegio! Estamos encantados de tenerte como parte de nuestra comunidad educativa. Tu cupo está garantizado y esperamos con ansias tu participación en nuestro colegio.</p>
+             <p>Atentamente,<br>Colegio SSCC de Manquehue</p>
+         </div>
+     </div>
+ </body>
+ </html>
+ 

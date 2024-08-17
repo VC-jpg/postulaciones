@@ -1,0 +1,69 @@
+ <!-- buscar_postulante.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'stylesbuscar.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor">
+        <img class="imagen-normal" src="{% static 'images/fondo2.jpg' %}" alt="fondo">
+        <img class="imagen-celular" src="{% static 'images/fondocelulares.jpg' %}" alt="fondo para celulares">
+      
+        <form id="buscarForm" method="post" class="form">
+            <div class="segment">
+                <h1>Consultas<br>Proceso de<br>Admision</h1>
+            </div>
+            {% csrf_token %}
+            <div class="input-group">
+                <label id="rutFormat" for="rutInput">Ingrese RUT del postulante</label>
+                <div class="input-center"> <!-- Nueva clase para centrar el input -->
+                    <input type="text" class="placeholder" id="rutInput" name="rut" placeholder="12345678-9" required>
+                    <button class="seach" type="button" id="searchButton"><i class="icon ion-md-search"></i></button>
+                </div>
+                <small id="rutFormatHelp" class="form-text text-muted">Ingrese el RUT en el formato 12345678-9</small>
+            </div>
+        </form>
+    </div>
+    
+<div class="segment">
+    <a href="https://www.instagram.com/colegioss.cc.manquehue/">
+        <button class="unit" type="button"><i class="icon ion-logo-instagram"></i></button>
+    </a>
+    <a href="https://ssccmanquehue.cl/">
+        <button class="unit" type="button"><i class="icon ion-logo-google"></i></button>
+    </a>
+</div>
+
+<footer>
+    <h6 class="footers">© Todos los derechos reservados 2024 - www.ssccmanquehue.cl <br> Padre Damián de Veuster #2215, Vitacura.
+        (+56 2) 2719 4300</h6>
+</footer>
+
+<script>
+document.getElementById("buscarForm").addEventListener("submit", function(event) {
+    var rutInput = document.getElementById("rutInput").value;
+    if (!/^(\d{1,8})-(\d|K|k)$/.test(rutInput)) {
+        event.preventDefault();
+        document.getElementById("rutFormatHelp").innerHTML = "Ingrese el RUT sin puntos y con guión, en el formato 12345678-9";
+        document.getElementById("rutInput").classList.add("is-invalid");
+    }
+});
+document.getElementById("searchButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("buscarForm").submit(); 
+});
+
+
+
+</script>
+
+</body>
+</html>

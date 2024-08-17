@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultado</title>
+<link rel="stylesheet" href="{% static 'stylesresultado.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+        <div class="contenedor">
+            <img class="imagen-normal" src="{% static 'images/fondo2.jpg' %}" alt="fondo">
+            <img class="imagen-celular" src="{% static 'images/fondocelulares.jpg' %}" alt="fondo para celulares">
+        </div>
+<div class="container">
+    <div class="card">
+        <h2>Resultado</h2>
+        {% if postulante.estado == "admitido" %}
+            <p>Estimado/a {{ postulante.nombre }},<br>
+            Nos complace informarte que has sido aceptado en nuestra institución. ¡Felicitaciones! Esperamos contar contigo como parte de nuestra comunidad educativa. Por favor, mantente atento a futuras comunicaciones para obtener detalles adicionales sobre el proceso de matriculación.<br><br>
+            Atentamente,<br>
+            Colegio SSCC de Manquehue</p>
+            <div class="procesoformulario">
+                <h3>¿Desea proceder con el proceso de matrícula?</h3>
+                <button id="si" onclick="procederAdmision('{{ postulante.rut }}')">Sí</button>
+                <button id="no" onclick="desistirAdmision('{{ postulante.rut }}')">No</button>
+            </div>
+        {% elif postulante.estado == "no_admitido" %}
+            <p>Estimado/a {{ postulante.nombre }},<br>
+            Lamentamos informarte que, después de una cuidadosa revisión de tu aplicación, no hemos podido aceptarte en nuestro colegio en esta ocasión. Apreciamos sinceramente tu interés en nuestra institución y te deseamos mucho éxito en tus futuros esfuerzos académicos. No dudes en contactarnos si tienes alguna pregunta o necesitas más información.<br><br>
+            Atentamente,<br>
+            Colegio SSCC de Manquehue</p>
+
+
+        {% elif postulante.estado == "lista_espera" %}
+        <p>Estimado/a {{ postulante.nombre }},<br>
+            Queremos informarte que tu aplicación ha sido colocada en nuestra lista de espera para el proceso de admisión en nuestra institución. Esto significa que todavía estamos evaluando las opciones disponibles, se informará por este medio tan pronto como haya una actualización sobre tu estado. Apreciamos tu paciencia y comprensión durante este tiempo.<br><br>
+            <strong>Tu posición en la lista de espera es: {{ postulante.posicion_lista_espera }} </strong><br><br>
+            Atentamente,<br> Colegio SSCC de Manquehue</p>
+            <div class="procesoformulario">
+            <h3>¿Deseas proceder con el proceso de admisión en caso de ser admitido más adelante?</h3>
+            <button id="si" onclick="confirmarAdmision('{{ postulante.rut }}')">Sí, confirmar</button>
+            <button id="no" onclick="desistirAdmision('{{ postulante.rut }}')">No, desistir</button>
+            </div>
+            
+
+        {% elif postulante.estado == "desistido" %}
+        <p>Estimado/a {{ postulante.nombre }}, usted ha desistido de su cupo.<br>
+            <p>Razón porqué desistió: {{ postulante.motivo_desistimiento }}</p>
+            <p>Si este desistimiento fue un error, por favor, pongase en contacto con la escuela para más información.</p>
+        {% else %}
+        <p>Estimado/a {{ postulante.nombre }},<br>
+            El estado del postulante {{ postulante.nombre }} no está disponible por el momento, mantente atento a futuras actualizaciones.</p>
+        {% endif %}
+    </div>
+ 
+</div>
+<script>
+
+function procederAdmision(rut) {
+    Swal.fire({
+        title: "¿Está seguro que desea proceder con su proceso de admisión?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#6E7881",
+        confirmButtonText: "Sí, proceder",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var data = {
+                'rut': rut,
+                'confirmacion': 'confirmado',
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            };
+            $.post('/proceder_admision/' + rut + '/', data)
+                .done(function(response) {
+                    Swal.fire({
+                        title: "¡Confirmación exitosa!",
+                        text: "Su confirmación se ha guardado en nuestros registros",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href = "/informacion-admision/";
+                    });
+                })
+                .fail(function(xhr, status, error) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al confirmar la admisión: " + error,
+                        icon: "error"
+                    });
+                });
+        }
+    });
+}
+
+
+
+
+
+
+function confirmarAdmision(rut) {
+    Swal.fire({
+        title: "¿Está seguro que desea confirmar y mantener su cupo en la lista de espera?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#6E7881",
+        confirmButtonText: "Sí, confirmar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var data = {
+                'rut': rut,
+                'confirmacion': 'confirmado',
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            };
+            $.post('/confirmar_admision/' + rut + '/', data)
+                .done(function(response) {
+                    Swal.fire({
+                        title: "¡Confirmación exitosa!",
+                        text: "Su confirmación se ha guardado en nuestros registros",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href = "/buscar_postulante/";
+                    });
+                })
+                .fail(function(xhr, status, error) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al confirmar: " + error,
+                        icon: "error"
+                    });
+                });
+        }
+    });
+}
+
+    
+
+
+async function desistirAdmision(rut) {
+    const confirmacion = await Swal.fire({
+        title: "¿Está seguro que desea desistir de su cupo?",
+        text: "¡Esta acción no se puede revertir!",
+        showCancelButton: true,
+        input: "textarea",
+        icon: "warning",
+        text: "Por favor, ingrese el motivo por el cual desiste",
+        inputPlaceholder: "Ingrese el motivo aquí...",
+        inputAttributes: {
+            "aria-label": "Ingrese el motivo aquí"
+        },
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Desistir",
+        confirmButtonColor: "#d33",
+    });
+
+    if (confirmacion.isConfirmed) {
+        const motivo = confirmacion.value;
+        const colegioAlternativo = await Swal.fire({
+            title: "¿Va a otra escuela?",
+            showCancelButton: true,
+            input: "text",
+            text: "Si va a otra escuela, ingrese el nombre aquí",
+            inputPlaceholder: "Ingrese el nombre aquí...",
+            inputAttributes: {
+                "aria-label": "Ingrese el nombre aquí"
+            },
+            cancelButtonText: "No",
+            confirmButtonText: "Sí, ingresar"
+        });
+
+        const data = {
+            'rut': rut,
+            'motivo_desistimiento': motivo,
+            'colegio_alternativo': colegioAlternativo.value || '',  // Si no se ingresa ningún colegio alternativo, enviar una cadena vacía
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        };
+
+        $.post('/desistir_cupo/' + rut + '/', data)
+            .done(function(response) {
+                Swal.fire("¡Desistimiento exitoso!", "Usted ha desistido de su cupo. Motivo: " + motivo, "success")
+                    .then(() => {
+                        window.location.href = "/buscar_postulante/";
+                    });
+            })
+            .fail(function(xhr, status, error) {
+                Swal.fire("Error", "Error al desistir del cupo: " + error, "error");
+            });
+    }
+}
+</script>
+</body>
+</html>

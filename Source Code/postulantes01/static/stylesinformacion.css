@@ -1,0 +1,134 @@
+.contenedor {
+    position: relative;
+  }
+  
+  .imagen-normal {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .imagen-celular {
+    display: none; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  /* Media query para dispositivos móviles */
+  @media only screen and (max-width: 768px) {
+    .imagen-normal {
+        display: none; /* Ocultar la imagen para pantallas más pequeñas */
+    }
+  
+    .imagen-celular {
+        display: block; /* Mostrar la imagen para dispositivos móviles */
+        width: 100%;
+        height: auto;
+    }
+  
+    .footers {
+        margin-top: 60%;
+    }
+    .card {
+      box-sizing: border-box;
+      width: 370px;
+      height: 434px;
+      background: rgba(217, 217, 217, 0.58);
+      box-shadow: 15px 15px 30px #686c7a,
+      -15px -15px 30px #8a8a8a;
+      backdrop-filter: blur(6px);
+      border-radius: 17px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.5s;
+      font-weight: bolder;
+      color: black;
+    }
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    letter-spacing: -0.2px;
+    font-size: 16px;
+    color: #BABECC;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Esto asegura que la tarjeta esté centrada verticalmente */
+  }
+  
+  .card {
+    box-sizing: border-box;
+    width: 370px;
+    height: 434px;
+    background: rgba(217, 217, 217, 0.58);
+    box-shadow: 15px 15px 30px #b1bad2,
+    -15px -15px 30px #f5f5f5;
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-weight: bolder;
+    color: black;
+  }
+  
+  .card:hover {
+    border: 1px solid rgb(129, 129, 146);
+    transform: scale(1.05);
+  }
+  
+
+  p {
+    padding: 2px 29px;
+    text-align: justify;
+    text-justify: auto;
+    color:#545b83;
+    text-shadow: 1px 1px 1px #fff;
+    align-items: center;
+    text-align: center;
+  }
+  
+  h2 {
+    color:#5e6493;
+    text-shadow: 1px 1px 1px #fff;
+  }
+  
+  button {
+    text-align: center;
+    color:#9A9FC1;
+    text-shadow: 1px 1px 1px #fff;
+  }
+  
+  .footers {
+    font-size: 14px;
+    color: #41557a;
+    text-shadow: 1px 1px 1px #858eae;
+    text-align: center; 
+    margin-top: 12%;
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f0f0f0;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #989DBF;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #16304d;
+  }

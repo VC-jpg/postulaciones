@@ -1,0 +1,284 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.2px;
+  font-size: 16px;
+  color: #BABECC;
+}
+
+.contenedor {
+  position: relative;
+}
+
+.imagen-normal {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.imagen-celular {
+  display: none; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Media query para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  .imagen-normal {
+    display: none; /* Ocultar la imagen para pantallas más pequeñas */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .imagen-celular {
+    display: block; /* Mostrar la imagen para dispositivos móviles */
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  
+    form {
+      width: 90%; /* Ajusta el ancho del formulario en dispositivos móviles */
+      max-width: 90%; /* Ajusta el ancho máximo del formulario en dispositivos móviles */
+      margin-top: 90px; /* Ajusta el margen superior */
+    }
+  
+    .segment {
+      font-size: 22px; /* Reduce el tamaño del texto en dispositivos móviles */
+      margin-top: 39%; /* Ajusta el margen superior */
+    }
+
+  .footers {
+    margin-top: 50%; /* Hace que el footer se posicione al final del contenedor */
+    margin-bottom: 16px; /* Agrega un espacio al final de la página */
+  }
+
+  h1 {
+    color: #455f7c;
+  }
+
+  
+  .seach {
+    margin-bottom: 4%; 
+    position: absolute;
+    right: 8px;
+    top: 50px;
+    transform: translateY(-50%);
+    border-radius: 16px;
+    line-height: 0;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    font-size: 19.2px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+.search:hover {
+  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+
+.search:active {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+}
+
+
+
+form {
+  padding: 16px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  color: #BABECC;
+}
+
+.segment {
+  padding: 32px 0;
+  text-align: center;
+  color: #9A9FC1;
+  text-shadow: 1px 1px 1px #fff;
+  font-size: 26px;
+}
+
+h1 {
+  font-size: 26px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+button, input {
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 26px;
+  padding: 16px;
+  background-color: #EBECF0;
+  text-shadow: 1px 1px 0 #FFF;
+}
+
+input {
+  width: 70%;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  transition: all 0.2s ease-in-out;
+  margin: 0 auto; /* Centra el input horizontalmente */
+  display: block; /* Asegura que el input se muestre como bloque para centrarlo horizontalmente */
+}
+
+button {
+  color: #61677C;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+  align-items: center;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.input-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px; /* Mover el espacio debajo del input al centro */
+}
+
+.input-center input {
+  width: calc(70% - 48px); /* Ajustar el ancho del input centrado */
+}
+
+.input-center .seach {
+  margin-left: -48px; /* Mover el botón de búsqueda hacia la izquierda */
+}
+
+.input-group {
+  position: relative;
+  text-align: center; /* Añadido para centrar el contenido */
+  margin-bottom: 16px; /* Mover el espacio debajo del input al centro */
+}
+
+
+label {
+  margin-bottom: 8px;
+}
+
+.unit {
+  border-radius: 16px;
+  line-height: 0;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px;
+  font-size: 19.2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.unit:hover {
+  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+
+.unit:active {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+input:focus {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #989DBF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #16304d;
+}
+
+small {
+  text-align: center;
+}
+
+.seach {
+  margin-bottom: 4%; 
+  position: absolute;
+  right: 8px;
+  top: 50px;
+  transform: translateY(-50%);
+  border-radius: 16px;
+  line-height: 0;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  font-size: 19.2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.search:hover {
+box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+
+.search:active {
+box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+input:focus {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+.placeholder {
+  font-style: italic;
+}
+
+#rutFormatHelp {
+  color: #a2b0bf;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+#rutFormat {
+  color: #838ca7;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.footers {
+  font-size: 14px;
+  color: #454e5f;
+  text-shadow: 1px 1px 1px #858eae;
+  text-align: center; 
+  margin-top: 11%;
+}
+
+.h1 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
